@@ -1,88 +1,75 @@
 @extends('customer.layouts.app')
 
 @section('head')
-    <title> {{__("forget-password.Forgot Password page title")}} </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- links -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-W3f+o8E26Ff/x2B5G1h4O+E5gu2gnpTCRjWmgxOdYGtX3xFhhLz25PqgW0D8Jv/wgtCZ/fKTNa5rJcBvJd0eRQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/forget password.css">
+    <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/normalize.css">
+    <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/all.min.css">
+    <title>Forget Password</title>
 @endsection
-
-
-@push('style')
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-
-    <!-- slick css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/slick/slick-theme.css">
-
-
-    <!-- Iconly css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/bulk-style.css">
-
-@endpush
-
 
 @section('content')
 
-    <!-- log in section start -->
-    <section class="log-in-section section-b-space forgot-section">
-        <div class="container-fluid-lg w-100">
-            <div class="row">
-                <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
-                    <div class="image-contain">
-                        <img src="{{asset('frontend')}}/assets/images/inner-page/forgot.png" class="img-fluid" alt="forgot password">
+    <!-- Wrapper -->
+    <div class="wrapper">
+        <!-- Nav bar -->
+        <nav class="nav">
+            <div class="nav-logo">
+                <!-- logo -->
+                <p>I Can Too</p>
+            </div>
+            <!-- navigation bar -->
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="{{route('customer.index')}}" class="link">Home</a></li>
+                    <li><a href="" class="link">Contact</a></li>
+                    <li><a href="{{route('customer.showLoginPage')}}" class="link active">Register</a></li>
+                    <li><a href="#" class="link">About</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content container -->
+        <div class="content-wrapper">
+            <div class="container">
+                <form action="{{route('customer.sendPasswordResetEmail')}}" method="post">
+                    @csrf
+                    <h2>Forget Password</h2>
+                    <div class="input-text">
+                        <input type="email" name="email" required>
+                        <label>Enter Your Email</label>
+                        @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>
 
-                <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
-                    <div class="d-flex align-items-center justify-content-center h-100">
-                        <div class="log-in-box">
-                            <div class="log-in-title">
-                                <h3>{{__("forget-password.Forgot your password?")}}</h3>
-                                <h4>{{__("forget-password.Enter Your Email Address")}}</h4>
-                            </div>
-
-                            <div class="input-box">
-                                <form class="row g-4" action="{{route('customer.sendPasswordResetEmail')}}" method="post">
-                                    @csrf
-                                    <div class="col-12">
-                                        <div class="form-floating theme-form-floating log-in-form">
-
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                   placeholder="{{__("forget-password.Email Address input placeholder")}}">
-                                            <label for="email">{{__("forget-password.Email Address input title")}}</label>
-                                        </div>
-                                        @error('email')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-12">
-                                        <button class="btn btn-animation w-100" type="submit">
-                                            {{__("forget-password.Send Password Reset Email")}}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <button type="submit">Send Email</button>
+                    <div class="register">
+                        <p>Don't have an account? <a href="{{route('customer.showLoginPage')}}">Register</a></p>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
-    <!-- log in section end -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="social-icons">
+                    <i class='bx bxl-facebook'></i>
+                    <i class='bx bxl-twitter'></i>
+                    <i class='bx bxl-instagram-alt'></i>
+                    <i class='bx bxl-linkedin'></i>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 @endsection
-
-
-@push('scripts')
-
-@endpush
-
-
-<body>
-
-
-
 
 

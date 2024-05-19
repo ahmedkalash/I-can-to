@@ -33,7 +33,8 @@
                                 @csrf
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
-                                        <input type="text" class="form-control" id="first_name" placeholder="{{__('register.First name input placeholder')}}" value="{{old('first_name')}}" name="first_name" required>
+                                        <input type="text" class="form-control" id="first_name" placeholder="{{__('register.First name input placeholder')}}"
+                                               value="{{old('first_name')}}" name="first_name" required>
                                         <label for="first_name">{{__('register.First Name input title')}}</label>
                                     </div>
                                     @error('first_name')

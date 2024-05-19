@@ -21,7 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     public static function home(){
-        if(Auth::user()->hasRole('super-admin')){
+
+        if(Auth::user()?->hasRole('super-admin')){
             return '/admin';
         }else {
              return '/';
