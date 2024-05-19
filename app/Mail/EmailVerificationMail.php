@@ -35,7 +35,7 @@ class EmailVerificationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from:   new Address('email-verification@souq3okaz.com',  ('Souq 3okaz | Email Verification') ),
+            from:   new Address('email-verification@souq3okaz.com',  ('I can too | Email Verification') ),
             subject:  ('Email Verification') ,
         );
     }

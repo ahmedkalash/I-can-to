@@ -40,7 +40,7 @@ trait RegistersUserTrait
 
             });
         }catch (\Throwable $e){
-            Log::error($e->getMessage(), $e->getTrace());
+            report($e);
             return app()->call([$this,'failedRegistrationResponse']);
         }
 

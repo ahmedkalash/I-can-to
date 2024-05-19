@@ -22,8 +22,8 @@ trait VerifyEmailTrait
             'exp'=> $this->verificationCodeExpirationTime(),
          ]);
 
+       // Mail::to($user->email)->send(new EmailVerificationMail($user, $verification_code));
         Alert::toast('An email was sent to your email. Check your email to verify your email.', 'info');
-        Mail::to($user->email)->send(new EmailVerificationMail($user, $verification_code));
     }
 
     public function reSendEmailVerificationNotification(User $user)

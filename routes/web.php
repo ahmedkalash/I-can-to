@@ -36,7 +36,7 @@ Route::group([
 
 
         // auth
-        Route::get('/register',[\App\Http\Controllers\Web\Customer\Auth\RegisterController::class, 'showRegistrationPage'])->name('showRegistrationPage');
+//        Route::get('/register',[\App\Http\Controllers\Web\Customer\Auth\RegisterController::class, 'showRegistrationPage'])->name('showRegistrationPage');
         Route::post('/register',[\App\Http\Controllers\Web\Customer\Auth\RegisterController::class, 'register'])->name('register');
         Route::get('/login',[\App\Http\Controllers\Web\Customer\Auth\LoginController::class, 'showLoginPage'])->name('showLoginPage');
         Route::post('/login',[\App\Http\Controllers\Web\Customer\Auth\LoginController::class, 'authenticate'])->name('authenticate');
@@ -110,12 +110,17 @@ Route::group([
     ], function(){
 
      Route::get('/', function () {
-        return view('customer.welcome');
-     })->name('index');
+        return view('customer.home');
+     })->name('customer.index');
 
      Route::get('/test',[\App\Http\Controllers\TestController::class, 'test'])->name('test');
      Route::post('/test',[\App\Http\Controllers\TestController::class, 'store'])->name('test.store');
 
+    Route::get('/register',function (){
+        \Illuminate\Support\Facades\Session::reflash();
+         return redirect()->route('customer.showLoginPage');
+    })
+        ->name('customer.showRegistrationPage');
 
 });
 
