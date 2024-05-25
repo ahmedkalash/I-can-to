@@ -27,10 +27,12 @@
               <a href="javascript:void(0)" class="dropbtn">Favorate</a>
               <i class='bx bxs-down-arrow'></i>
               <div class="dropdown-content">
-                <a href="#">Favorate 1</a>
-                <a href="#">Favorate 2</a>
-                <a href="#">Favorate 3</a>
-                <a href="#">Favorate 4</a>
+
+              
+                <!-- make favourites dynamic -->
+                @foreach ($fav as $fav_item)
+                    <a href="{{$fav_item->id}}">{{$fav_item->text}}</a>                
+                @endforeach
               </div>
             </li>
             <li><a href="#" class="link">Contact</a></li>

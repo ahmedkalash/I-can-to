@@ -81,4 +81,10 @@ class User extends Authenticatable  implements HasMedia , FilamentUser, HasName
         return $this->fullName;
     }
 
+    public function history()
+    {
+        $this->HasMany(History::class);
+    }
+
+
 }

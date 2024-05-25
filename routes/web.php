@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Customer\Auth\ResetPasswordController;
+use App\Models\History;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -14,9 +15,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
 
 
 // redirecting the default laravel routes to custom routes
@@ -109,8 +107,10 @@ Route::group([
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function(){
 
+        //Edited to add favourite
      Route::get('/', function () {
-        return view('customer.home');
+        $fav = History::favourite()->get();
+        return view('customer.home',compact('fav'));
      })->name('customer.index');
 
      Route::get('/test',[\App\Http\Controllers\TestController::class, 'test'])->name('test');
